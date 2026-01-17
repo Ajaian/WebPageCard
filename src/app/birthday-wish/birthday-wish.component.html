@@ -1,0 +1,88 @@
+<div class="birthday-bg">
+  <!-- Floating hearts/stars background -->
+  <div class="floating-bg">
+    <div class="float-heart" *ngFor="let i of [1,2,3,4,5,6,7,8,9,10]"></div>
+    <div class="float-star" *ngFor="let i of [1,2,3,4,5,6]"></div>
+    <div class="float-dot" *ngFor="let i of [1,2,3,4,5,6,7,8]"></div>
+  </div>
+
+  <!-- Loading Screen -->
+  @if (state === 'loading') {
+    <div class="center-card">
+      <div class="card loading-card">
+        <div class="loading-icons">
+          <span class="heart-anim">💖</span>
+          <span class="heart-anim delay1">💗</span>
+          <span class="heart-anim delay2">💓</span>
+        </div>
+        <br />
+        <div class="loading-text">Loading something special...</div>
+      </div>
+    </div>
+  }
+
+  <!-- Countdown Screen -->
+  @if (state === 'countdown') {
+    <div class="center-card">
+      <div class="card countdown-card">
+        <div class="countdown-title">Your Special Day is Almost Here <span class="emoji">💕</span></div>
+        <div class="countdown-boxes">
+          <div class="countdown-box">
+            <span class="icon">⭐</span>
+            <span class="num">{{ countdown.days }}</span>
+            <span class="label">Days</span>
+          </div>
+          <div class="countdown-box">
+            <span class="icon">⏰</span>
+            <span class="num">{{ countdown.hours }}</span>
+            <span class="label">Hours</span>
+          </div>
+          <div class="countdown-box">
+            <span class="icon">🎂</span>
+            <span class="num">{{ countdown.minutes }}</span>
+            <span class="label">Minutes</span>
+          </div>
+          <div class="countdown-box">
+            <span class="icon">💖</span>
+            <span class="num">{{ countdown.seconds }}</span>
+            <span class="label">Seconds</span>
+          </div>
+        </div>
+        @if (isCountdownZero()) {
+          <div class="its-time">It's time!</div>
+        }
+        <button class="reveal-btn" [disabled]="!isCountdownZero()" (click)="onReveal()">For you →</button>
+      </div>
+    </div>
+  }
+
+  <!-- Birthday Reveal Screen -->
+  @if (state === 'reveal' || state === 'opened') {
+    <div class="center-card">
+      <div class="card reveal-card">
+        <div class="reveal-heading">Happy Birthday! <span class="emoji">🎂✨💖</span></div>
+        <div class="reveal-subtext">To My Cutiepie</div>
+        <div class="gift-card-container">
+          <button class="gift-card-btn" [class.opened]="cardOpened" (click)="!cardOpened && openCard()">
+            @if (!cardOpened) {
+              <span>Tap to open your card 🎁</span>
+            }
+            @if (cardOpened) {
+              <span>🎉</span>
+            }
+          </button>
+          @if (state === 'opened') {
+            <div class="heart-confetti">
+              <span *ngFor="let i of [1,2,3,4,5,6,7,8,9,10]">💖</span>
+            </div>
+          }
+        </div>
+        @if (state === 'opened') {
+          <div class="heartfelt-message">
+            <div class="message-text">{{ heartfeltMessage }}</div>
+          </div>
+        }
+      </div>
+    </div>
+  }
+</div>
