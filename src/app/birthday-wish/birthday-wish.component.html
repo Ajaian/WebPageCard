@@ -63,7 +63,7 @@
         <div class="reveal-heading">Happy Birthday! <span class="emoji">🎂✨💖</span></div>
         <div class="reveal-subtext">To My Cutiepie</div>
         <div class="gift-card-container">
-          <button class="gift-card-btn" [class.opened]="cardOpened" (click)="!cardOpened && openCard()">
+          <button class="gift-card-btn" [class.opened]="cardOpened" (click)=" openCard()">
             @if (!cardOpened) {
               <span>Tap to open your card 🎁</span>
             }

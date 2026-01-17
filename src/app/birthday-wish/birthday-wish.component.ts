@@ -65,10 +65,14 @@ export class BirthdayWishComponent implements OnInit, OnDestroy {
   }
 
   openCard() {
-    this.cardOpened = true;
-    setTimeout(() => {
+    if (!this.cardOpened){
+      this.cardOpened = true;
       this.state = 'opened';
-    }, 700); // match animation duration
+    }
+    else {
+    this.cardOpened = false;
+    this.state = 'reveal';
+    }
   }
 
   isCountdownZero() {
