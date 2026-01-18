@@ -14,8 +14,10 @@ export class BirthdayWishComponent implements OnInit, OnDestroy {
   // App states: 'loading', 'countdown', 'reveal', 'opened'
   state: 'loading' | 'countdown' | 'reveal' | 'opened' = 'loading';
 
-  // Set your birthday date here (YYYY-MM-DDTHH:MM:SS)
-  birthday: Date = new Date('2026-01-20T00:00:00');
+  // // Set your birthday date here (YYYY-MM-DDTHH:MM:SS)
+  // birthday: Date = new Date('2026-01-20T00:00:00');
+    // Set birthday to 10 seconds from now
+  birthday: Date = new Date(Date.now() + 10000);
   now: Date = new Date();
   countdown = { days: 0, hours: 0, minutes: 0, seconds: 0 };
   intervalId: any;
@@ -58,7 +60,7 @@ export class BirthdayWishComponent implements OnInit, OnDestroy {
       const seconds = Math.floor((diff / 1000) % 60);
       this.countdown = { days, hours, minutes, seconds };
     }
-    // this.cdr.detectChanges();
+    this.cdr.detectChanges();
   }
 
   onReveal() {
