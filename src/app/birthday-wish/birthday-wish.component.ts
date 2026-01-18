@@ -58,6 +58,7 @@ export class BirthdayWishComponent implements OnInit, OnDestroy {
       const seconds = Math.floor((diff / 1000) % 60);
       this.countdown = { days, hours, minutes, seconds };
     }
+    // this.cdr.detectChanges();
   }
 
   onReveal() {
